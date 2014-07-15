@@ -1,0 +1,52 @@
+<!DOCTYPE HTML> 
+<html>
+<head>
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
+<meta charset="utf-8" />
+<link href="css/jquery.mobile-1.4.3.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/jquery.mobile.structure-1.4.3.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/jquery.mobile.theme-1.4.3.min.css" rel="stylesheet" type="text/css"/>
+<script src="phonegap.js" type="text/javascript"></script>
+<script src="js/jquery-2.1.1.js" type="text/javascript"></script>
+<script src="js/jquery.mobile-1.4.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){    
+    var botoncoordenadas=$("#obtenercord"); 
+    botoncoordenadas.tap(function(){  
+    obtenerCoordenadas();
+    }); 
+        
+  },false);
+});   
+
+function  obtenerCoordenadas(){
+
+if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(obtenerCords, cordsError);
+} else {
+    alert("Tu navegador no soporta o no tiene habilitada la 'Geolocalización'");
+}
+}
+function obtenerCords(position){
+alert("Latitud:"+position.coords.latitude+" Longitud: "+position.coords.longitude);
+}
+function cordsError(error){
+alert('codigo:'+error.code+' mensaje:'+error.message);
+}
+</script>
+</head>
+<body>
+<div data-role="page" id="Registrar">
+	<div data-role="header" data-theme="b" data-position="fixed" data-add-back-btn="true" data-rel="back">
+	<h1>Obtener coordenadas</h1>
+	</div>
+    
+	<div data-role="content">
+		<input type="button" id="obtenercord" value="Obtener coordenadas de ubicación" />
+	</div>    
+	<div data-role="footer" data-position="fixed" data-theme="b" >
+	<h1>Derechos reservados</h1>
+	</div>
+</div>
+</body>
+</html>
